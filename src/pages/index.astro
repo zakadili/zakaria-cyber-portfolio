@@ -123,13 +123,13 @@ function startAuto(){
   const command=demoCommands[commandIndex];
   if(charIndex<command.length){
    typed.textContent=command.slice(0,++charIndex);
-   autoTimer=window.setTimeout(tick,65);
+   autoTimer=window.setTimeout(tick,135);
   }else{
    autoTimer=window.setTimeout(()=>{
     runCommand(command);
     typed.textContent='';charIndex=0;commandIndex++;
-    autoTimer=window.setTimeout(tick,750);
-   },280);
+    autoTimer=window.setTimeout(tick,1300);
+   },500);
   }
  }
  autoTimer=window.setTimeout(tick,350);
