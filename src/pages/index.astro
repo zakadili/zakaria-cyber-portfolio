@@ -16,14 +16,28 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  <div class="hero-side"><span>01 / ENTRY POINT</span><span>OSCP / IN PROGRESS</span><span>AUTHORIZED LABS ONLY</span></div>
  <div class="hero-foot"><span>DEV11 // PERSONAL SECURITY JOURNAL</span><a href="#transition">SCROLL TO ENTER <span class="red">↓</span></a></div>
 </section>
-<section class="zoom-sequence" id="transition" aria-label="Entering the system">
+<section class="zoom-sequence" id="transition" aria-label="DEV11 interactive scroll experience">
  <div class="zoom-sticky">
-  <div class="corridor" aria-hidden="true">
-   <div class="corridor-ceiling"></div><div class="corridor-floor"></div><div class="corridor-left"></div><div class="corridor-right"></div>
-   <div class="corridor-portal"><div class="portal-inner"><span>DEV11</span><b>ACCESS / GRANTED</b></div></div>
-   <div class="corridor-haze"></div>
+  <div class="terminal-atmosphere" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="ambient-glow"></div></div>
+  <div class="terminal-scene">
+   <div class="terminal-window" aria-label="Illustrative DEV11 terminal">
+    <div class="terminal-bar"><div class="terminal-lights"><i></i><i></i><i></i></div><span>dev11@lab: ~/field-notes</span><span>— □ ×</span></div>
+    <div class="terminal-body">
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>whoami</b></div>
+     <div class="terminal-output">zakaria_adili <span class="terminal-muted">/ DEV11</span></div>
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat mission.txt</b></div>
+     <div class="terminal-output">OFFENSIVE SECURITY // LEARN BY DOING</div>
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>ls ./research</b></div>
+     <div class="terminal-output terminal-columns"><span>web-enumeration/</span><span>linux-privesc/</span><span>active-directory/</span><span>lab-writeups/</span></div>
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat status.log</b></div>
+     <div class="terminal-output">[+] OSCP preparation: in progress<br/>[+] Learning environment: authorized labs<br/>[+] Next step: document what matters</div>
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <span class="terminal-caret">▌</span></div>
+    </div>
+    <div class="terminal-bottom"><span>SESSION / 001</span><span>LEARN • TEST • DOCUMENT</span></div>
+   </div>
   </div>
-  <div class="zoom-overlay"><span class="zoom-label">02 / INTO THE SYSTEM</span><h2>LOOK<br/>CLOSER<span class="red">.</span></h2><p>Every system has another layer.</p><span class="scroll-hint">SCROLL TO GO DEEPER ↓</span></div>
+  <div class="scene-caption"><span>02 / INSIDE THE SYSTEM</span><h2>EVERY<br/>LAYER <em>MATTERS.</em></h2><p>Enumeration. Understanding. Persistence in learning.<br/>Scroll to inspect the workspace.</p></div>
+  <div class="scene-progress"><span>SCROLL TO EXPLORE</span><div class="progress-track"><div class="progress-fill"></div></div><span>DEV11 / 02</span></div>
  </div>
 </section>
 <section class="projects" id="projects">
@@ -39,7 +53,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  const sticky=document.querySelector<HTMLElement>('.zoom-sticky');
  const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
  let queued=false;
- function update(){queued=false;if(!zone||!sticky)return;const r=zone.getBoundingClientRect();const total=Math.max(1,zone.offsetHeight-window.innerHeight);const p=Math.max(0,Math.min(1,-r.top/total));sticky.style.setProperty('--zoom',reduce.matches?'1':String(1+p*4.2));sticky.style.setProperty('--fade',String(Math.min(1,Math.max(0,(p-.13)*2.6))));sticky.style.setProperty('--label-opacity',String(Math.max(0,1-p*2.8)));}
+ function update(){queued=false;if(!zone||!sticky)return;const r=zone.getBoundingClientRect();const total=Math.max(1,zone.offsetHeight-window.innerHeight);const p=Math.max(0,Math.min(1,-r.top/total));const animated=!reduce.matches;sticky.style.setProperty('--terminal-scale',String(animated?.70+p*.72:1));sticky.style.setProperty('--terminal-rotate',String(animated?(-11+p*11):0)+'deg');sticky.style.setProperty('--terminal-shift',String(animated?(12-p*12):0)+'vh');sticky.style.setProperty('--terminal-opacity',String(animated?Math.min(1,.45+p*2.8):1));sticky.style.setProperty('--caption-opacity',String(animated?Math.max(.16,1-p*1.35):1));sticky.style.setProperty('--scene-progress',String(p*100)+'%');}
  function onScroll(){if(!queued){queued=true;requestAnimationFrame(update)}}
  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);reduce.addEventListener('change',onScroll);update();
 </script>
