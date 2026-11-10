@@ -1,27 +1,23 @@
 ---
 import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
-const posts = (await getCollection('writeups', ({data}) => data.published)).sort((a,b) => b.data.date.valueOf() - a.data.date.valueOf());
+const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
 ---
 <Base>
-<div class="shell">
-  <section class="intro">
-    <p class="eyebrow">/home/zakaria</p>
-    <h1>Zakaria Adili<span class="cursor">_</span></h1>
-    <p class="identity">DEV11 / offensive security</p>
-    <p class="description">Learning to break systems. Trying to understand them better.<br/>Notes from labs, things that worked, things that didn't.</p>
-    <p class="subtle">Currently studying for the OSCP.</p>
-  </section>
-  <section class="section" id="writing">
-    <div class="section-heading"><h2>writing</h2><span>{String(posts.length).padStart(2,'0')} entries</span></div>
-    <div class="entries">{posts.slice(0,6).map(post => <a class="entry" href={'/writeups/'+post.id}><time datetime={post.data.date.toISOString()}>{post.data.date.toISOString().slice(0,10)}</time><span class="entry-title">{post.data.title}</span><span class="entry-type">{post.data.platform.toLowerCase()} / {post.data.status.toLowerCase()}</span><span class="entry-arrow">↗</span></a>)}</div>
-    <a class="underlink" href="/writeups">all write-ups →</a>
-  </section>
-  <section class="section about" id="about">
-    <div class="section-heading"><h2>about</h2></div>
-    <p>I'm Zakaria. I spend my time learning penetration testing, working through labs, and writing down what I actually understand. This is a record of that process, not a highlight reel.</p>
-    <p>Mostly Linux, web security, enumeration, and privilege escalation. More to come.</p>
-  </section>
-  <section class="section" id="contact"><div class="section-heading"><h2>elsewhere</h2></div><a class="underlink" href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">github ↗</a></section>
+<div class="ambient" aria-hidden="true"><div class="orb"></div><div class="scan"></div></div>
+<section class="stage">
+ <div class="stage-top"><span class="serial">PORTFOLIO / 001 — 2026</span><span class="live"><i></i> SYSTEM ONLINE</span></div>
+ <div class="stage-content">
+  <p class="overline"><span class="slash">//</span> THE PERSON BEHIND THE SCREEN</p>
+  <h1 class="display"><span>ZAKARIA</span><span class="display-second">ADILI<span class="red-dot">.</span></span></h1>
+  <div class="hero-bottom"><div class="hero-role"><span class="line"></span><div><strong>DEV11</strong><small>OFFENSIVE SECURITY / FIELD NOTES</small></div></div><p>Curiosity is the entry point.<br/>Understanding is the objective.</p></div>
+ </div>
+ <div class="stage-foot"><span>BASED ONLINE · WORKING EVERYWHERE</span><a href="#writing">SCROLL TO EXPLORE <span>↓</span></a></div>
+ <div class="vertical-tag">NOISE / SIGNAL / SYSTEMS</div>
+</section>
+<div class="site-inner">
+ <section class="feature" id="about"><div class="feature-index">01 / PROFILE</div><div class="feature-body"><p class="micro">NOT A PERFECT RECORD. A REAL ONE.</p><h2>BREAK THINGS.<br/><em>LEARN WHY.</em></h2><div class="feature-grid"><p>I'm Zakaria, also known as DEV11. I study offensive security and document the details that matter: dead ends, discoveries, and everything between.</p><div class="focus"><span>CURRENT FOCUS</span><strong>OSCP PREPARATION</strong><strong>LINUX / WEB / PRIVESC</strong><strong>LAB RESEARCH</strong></div></div></div></section>
+ <section class="work" id="writing"><div class="work-heading"><div><span class="feature-index">02 / ARCHIVE</span><h2>FIELD <i>NOTES</i><span class="red-dot">.</span></h2></div><a href="/writeups">VIEW ALL ENTRIES ↗</a></div><div class="work-list">{posts.slice(0,6).map((post,i)=><a class="work-row" href={'/writeups/'+post.id}><span class="work-num">{String(i+1).padStart(2,'0')}</span><div class="work-name"><strong>{post.data.title}</strong><small>{post.data.summary}</small></div><span class="work-platform">{post.data.platform} / {post.data.status}</span><span class="work-arrow">↗</span></a>)}</div></section>
+ <section class="outro" id="contact"><p class="micro">03 / CONTACT</p><h2>STAY<br/><span>CURIOUS.</span></h2><div class="outro-bottom"><span>EVERY SYSTEM HAS A STORY.</span><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></div></section>
 </div>
 </Base>
