@@ -22,7 +22,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
   <div class="terminal-scene">
    <div class="terminal-window" aria-label="Illustrative DEV11 terminal">
     <div class="terminal-bar"><div class="terminal-lights"><i></i><i></i><i></i></div><span>dev11@lab: ~/field-notes</span><span>— □ ×</span></div>
-    <div class="terminal-body">
+    <div class="terminal-body" id="terminal-body">
      <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>whoami</b></div>
      <div class="terminal-output">zakaria_adili <span class="terminal-muted">/ DEV11</span></div>
      <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat mission.txt</b></div>
@@ -31,7 +31,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
      <div class="terminal-output terminal-columns"><span>web-enumeration/</span><span>linux-privesc/</span><span>active-directory/</span><span>lab-writeups/</span></div>
      <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat status.log</b></div>
      <div class="terminal-output">[+] OSCP preparation: in progress<br/>[+] Learning environment: authorized labs<br/>[+] Next step: document what matters</div>
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <span class="terminal-caret">▌</span></div>
+     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <span class="terminal-caret">▌</span></div><p class="terminal-help">INTERACTIVE MODE ↓ Try <code>help</code>, <code>experience</code>, <code>education</code>, <code>languages</code> or <code>contact</code>.</p><form class="terminal-form" id="terminal-form" autocomplete="off"><label for="terminal-command">dev11@lab:~$</label><input id="terminal-command" name="command" aria-label="Terminal command" spellcheck="false" maxlength="40" placeholder="type a command..." /><button type="submit">RUN ↵</button></form><div id="terminal-result" class="terminal-result" aria-live="polite"></div>
     </div>
     <div class="terminal-bottom"><span>SESSION / 001</span><span>LEARN • TEST • DOCUMENT</span></div>
    </div>
@@ -47,7 +47,24 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  <a class="all-link" href="/writeups">OPEN THE FULL ARCHIVE ↗</a>
 </section>
 <section class="focus-section" id="about"><div class="section-top"><span>04 / ABOUT</span><span>THE PERSON BEHIND DEV11</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
-<section class="contact-section" id="contact"><span>05 / OUTSIDE THE SYSTEM</span><h2>STAY<br/><em>CURIOUS.</em></h2><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></section>
+<section class="resume-section" id="resume">
+ <div class="section-top"><span>05 / BACKGROUND</span><span>CURRICULUM VITAE</span></div>
+ <div class="resume-intro"><h2>BEFORE<br/><em>THE SHELL.</em></h2><p>My route into cybersecurity hasn't been linear. Investigations, language data, business, and software development all shaped how I approach problems today.</p></div>
+ <div class="resume-columns"><div><h3>EXPERIENCE</h3>
+  <article class="resume-item"><time>2020 — 2022</time><div><h4>Amazon</h4><strong>Investigations Specialist · Prague</strong><p>Investigated fraud patterns and risks involving seller onboarding, identity verification, KYC checks, and compliance procedures.</p></div></article>
+  <article class="resume-item"><time>2019</time><div><h4>TransPerfect</h4><strong>Language Data Analyst · Prague</strong><p>French-language data analysis, transcription, and linguistic modeling for virtual assistant development.</p></div></article>
+  <article class="resume-item"><time>2012 — 2014</time><div><h4>Jnane Souissi Book Club</h4><strong>President & Co-founder · Morocco</strong><p>Organized reading events, school competitions, partnerships, and sponsorship outreach.</p></div></article>
+  <details class="resume-more"><summary>EARLIER INTERNSHIPS +</summary><p>JACOBS Engineering S.A. — HR Intern (2014)<br/>Palmeraie Hotels & Resorts — Project Intern (2013)<br/>Clinique Al Boustane — Assistant Internship (2013)</p></details>
+ </div><div><h3>EDUCATION</h3>
+  <article class="resume-item"><time>2022 — 2025</time><div><h4>EU Business School</h4><strong>Master's studies · Digital Business</strong></div></article>
+  <article class="resume-item"><time>2022</time><div><h4>Le Wagon</h4><strong>Full-Stack Web Development / Data Science</strong></div></article>
+  <article class="resume-item"><time>2017 — 2020</time><div><h4>University of New York in Prague</h4><strong>Bachelor's · Business Administration</strong></div></article>
+  <details class="resume-more"><summary>EARLIER EDUCATION +</summary><p>Anglo-American University, Prague — Exchange Program (2016–2017)<br/>Al Akhawayn University — Studies (2014–2016)</p></details>
+  <h3 class="resume-language-title">LANGUAGES</h3><p class="resume-languages">Arabic / Native<br/>French / Native or bilingual<br/>English / Full professional<br/>Spanish / Working proficiency</p>
+ </div></div>
+ <div class="resume-links"><a href="https://www.linkedin.com/in/zakaria-adili-405975123/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="mailto:adilizakaria1@gmail.com">EMAIL ME ↗</a></div>
+</section>
+<section class="contact-section" id="contact"><span>06 / OUTSIDE THE SYSTEM</span><h2>STAY<br/><em>CURIOUS.</em></h2><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></section>
 <script>
  const zone=document.querySelector<HTMLElement>('.zoom-sequence');
  const sticky=document.querySelector<HTMLElement>('.zoom-sticky');
@@ -56,5 +73,21 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  function update(){queued=false;if(!zone||!sticky)return;const r=zone.getBoundingClientRect();const total=Math.max(1,zone.offsetHeight-window.innerHeight);const p=Math.max(0,Math.min(1,-r.top/total));const animated=!reduce.matches;sticky.style.setProperty('--terminal-scale',String(animated?.70+p*.72:1));sticky.style.setProperty('--terminal-rotate',String(animated?(-11+p*11):0)+'deg');sticky.style.setProperty('--terminal-shift',String(animated?(12-p*12):0)+'vh');sticky.style.setProperty('--terminal-opacity',String(animated?Math.min(1,.45+p*2.8):1));sticky.style.setProperty('--caption-opacity',String(animated?Math.max(.16,1-p*1.35):1));sticky.style.setProperty('--scene-progress',String(p*100)+'%');}
  function onScroll(){if(!queued){queued=true;requestAnimationFrame(update)}}
  window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);reduce.addEventListener('change',onScroll);update();
+</script>
+<script>
+const form=document.querySelector<HTMLFormElement>('#terminal-form');
+const input=document.querySelector<HTMLInputElement>('#terminal-command');
+const output=document.querySelector<HTMLElement>('#terminal-result');
+const responses:Record<string,string>={
+help:'COMMANDS: whoami | experience | education | languages | skills | status | contact | clear',
+whoami:'Zakaria Adili / DEV11 — offensive security student. Background in fraud investigations, data analysis and software development.',
+experience:'Amazon — Investigations Specialist (2020–2022)\\nTransPerfect — Language Data Analyst (2019)\\nJnane Souissi Book Club — President & Co-founder (2012–2014)\\nEarlier: JACOBS, Palmeraie Hotels, Clinique Al Boustane.\\nSee the CV section below.',
+education:'EU Business School — Digital Business (2022–2025)\\nLe Wagon — Full-Stack / Data Science (2022)\\nUniversity of New York in Prague — Business Administration (2017–2020)\\nEarlier: Anglo-American University and Al Akhawayn.',
+languages:'Arabic: native\\nFrench: native/bilingual\\nEnglish: full professional\\nSpanish: working proficiency',
+skills:'Currently studying: web security, Linux privilege escalation, Active Directory, enumeration and penetration testing.',
+status:'OSCP preparation: IN PROGRESS. No certification claimed.',
+contact:'Email: adilizakaria1@gmail.com\\nLinkedIn: linkedin.com/in/zakaria-adili-405975123'
+};
+form?.addEventListener('submit',(event)=>{event.preventDefault();if(!input||!output)return;const command=input.value.trim().toLowerCase();if(!command)return;if(command==='clear'){output.textContent='';input.value='';return;}const line=document.createElement('div');line.className='terminal-response';const heading=document.createElement('strong');heading.textContent='$ '+command;const body=document.createElement('pre');body.textContent=(responses[command]??'Command not found. Type help for available commands.').replaceAll('\\n','\n');line.append(heading,body);output.append(line);input.value='';output.scrollIntoView({behavior:'smooth',block:'nearest'});});
 </script>
 </Base>
