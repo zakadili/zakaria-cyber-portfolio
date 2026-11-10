@@ -23,15 +23,13 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
    <div class="terminal-window" aria-label="Illustrative DEV11 terminal">
     <div class="terminal-bar"><div class="terminal-lights"><i></i><i></i><i></i></div><span>dev11@lab: ~/field-notes</span><span>— □ ×</span></div>
     <div class="terminal-body" id="terminal-body">
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>whoami</b></div>
-     <div class="terminal-output">zakaria_adili <span class="terminal-muted">/ DEV11</span></div>
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat mission.txt</b></div>
-     <div class="terminal-output">OFFENSIVE SECURITY // LEARN BY DOING</div>
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>ls ./research</b></div>
-     <div class="terminal-output terminal-columns"><span>web-enumeration/</span><span>linux-privesc/</span><span>active-directory/</span><span>lab-writeups/</span></div>
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <b>cat status.log</b></div>
-     <div class="terminal-output">[+] OSCP preparation: in progress<br/>[+] Learning environment: authorized labs<br/>[+] Next step: document what matters</div>
-     <div class="terminal-prompt"><span>dev11@lab</span>:~$ <span class="terminal-caret">▌</span></div><p class="terminal-help">INTERACTIVE MODE ↓ Try <code>help</code>, <code>experience</code>, <code>education</code>, <code>languages</code> or <code>contact</code>.</p><form class="terminal-form" id="terminal-form" autocomplete="off"><label for="terminal-command">dev11@lab:~$</label><input id="terminal-command" name="command" aria-label="Terminal command" spellcheck="false" maxlength="40" placeholder="type a command..." /><button type="submit">RUN ↵</button></form><div id="terminal-result" class="terminal-result" aria-live="polite"></div>
+      <div id="terminal-result" class="terminal-result" aria-live="off"></div>
+      <div class="terminal-active-line" id="terminal-active-line"><span class="terminal-host">dev11@lab</span>:~$ <span id="terminal-typed"></span><span class="terminal-caret">▌</span></div>
+      <form class="terminal-form" id="terminal-form" autocomplete="off" hidden>
+        <label for="terminal-command">dev11@lab:~$</label>
+        <input id="terminal-command" name="command" aria-label="Terminal command" spellcheck="false" maxlength="40" placeholder="type help..." />
+        <button type="submit">RUN ↵</button>
+      </form>
     </div>
     <div class="terminal-bottom"><span>SESSION / 001</span><span>LEARN • TEST • DOCUMENT</span></div>
    </div>
@@ -59,7 +57,8 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
   <article class="resume-item"><time>2022 — 2025</time><div><h4>EU Business School</h4><strong>Master's studies · Digital Business</strong></div></article>
   <article class="resume-item"><time>2022</time><div><h4>Le Wagon</h4><strong>Full-Stack Web Development / Data Science</strong></div></article>
   <article class="resume-item"><time>2017 — 2020</time><div><h4>University of New York in Prague</h4><strong>Bachelor's · Business Administration</strong></div></article>
-  <details class="resume-more"><summary>EARLIER EDUCATION +</summary><p>Anglo-American University, Prague — Exchange Program (2016–2017)<br/>Al Akhawayn University — Studies (2014–2016)</p></details>
+  <article class="resume-item"><time>2016 — 2017</time><div><h4>Anglo-American University, Prague</h4><strong>Exchange Program · Business Administration</strong></div></article>
+  <article class="resume-item resume-highlight"><time>2014 — 2016</time><div><h4>Al Akhawayn University</h4><strong>University studies · Morocco</strong></div></article>
   <h3 class="resume-language-title">LANGUAGES</h3><p class="resume-languages">Arabic / Native<br/>French / Native or bilingual<br/>English / Full professional<br/>Spanish / Working proficiency</p>
  </div></div>
  <div class="resume-links"><a href="https://www.linkedin.com/in/zakaria-adili-405975123/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="mailto:adilizakaria1@gmail.com">EMAIL ME ↗</a></div>
@@ -88,58 +87,58 @@ skills:'Currently studying: web security, Linux privilege escalation, Active Dir
 status:'OSCP preparation: IN PROGRESS. No certification claimed.',
 contact:'Email: adilizakaria1@gmail.com\\nLinkedIn: linkedin.com/in/zakaria-adili-405975123'
 };
-function runCommand(command:string, automated=false){
+const typed=document.querySelector<HTMLElement>('#terminal-typed');
+const activeLine=document.querySelector<HTMLElement>('#terminal-active-line');
+const terminalBody=document.querySelector<HTMLElement>('#terminal-body');
+function runCommand(command:string){
  if(!output)return;
  if(command==='clear'){output.textContent='';return;}
  const line=document.createElement('div');line.className='terminal-response';
- const heading=document.createElement('strong');heading.textContent='$ '+command;
+ const heading=document.createElement('strong');heading.textContent='dev11@lab:~$ '+command;
  const body=document.createElement('pre');body.textContent=(responses[command]??'Command not found. Type help for available commands.').replaceAll('\\n',String.fromCharCode(10));
  line.append(heading,body);output.append(line);
- if(!automated){output.scrollTop=output.scrollHeight;}
+ terminalBody?.scrollTo({top:terminalBody.scrollHeight,behavior:'instant'});
 }
-let autoStarted=false;
-let autoCancelled=false;
-let autoTimer:number|undefined;
-const stopAuto=()=>{autoCancelled=true;if(autoTimer!==undefined)window.clearTimeout(autoTimer);};
-input?.addEventListener('focus',stopAuto);
-input?.addEventListener('input',stopAuto);
 form?.addEventListener('submit',(event)=>{
  event.preventDefault();if(!input)return;
- stopAuto();const command=input.value.trim().toLowerCase();if(!command)return;
+ const command=input.value.trim().toLowerCase();if(!command)return;
  runCommand(command);input.value='';
 });
-const demoCommands=['whoami','experience','education','languages','status'];
+const demoCommands=['whoami','experience','education','languages','skills','status','contact'];
+let autoStarted=false;
+let autoTimer:number|undefined;
 function startAuto(){
- if(autoStarted||autoCancelled||!input||!output)return;
+ if(autoStarted||!typed||!activeLine||!form)return;
  autoStarted=true;
- if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
-  for(const command of demoCommands)runCommand(command,true);
-  return;
+ const reduced=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+ if(reduced){
+  for(const command of demoCommands)runCommand(command);
+  activeLine.hidden=true;form.hidden=false;return;
  }
  let commandIndex=0;let charIndex=0;
  function tick(){
-  if(autoCancelled||!input||!output)return;
-  if(commandIndex>=demoCommands.length){input.value='';return;}
+  if(commandIndex>=demoCommands.length){
+   activeLine.hidden=true;form.hidden=false;return;
+  }
   const command=demoCommands[commandIndex];
   if(charIndex<command.length){
-   input.value=command.slice(0,++charIndex);
-   autoTimer=window.setTimeout(tick,90);
+   typed.textContent=command.slice(0,++charIndex);
+   autoTimer=window.setTimeout(tick,65);
   }else{
    autoTimer=window.setTimeout(()=>{
-    if(autoCancelled||!input)return;
-    runCommand(command,true);
-    input.value='';charIndex=0;commandIndex++;
-    autoTimer=window.setTimeout(tick,1100);
-   },400);
+    runCommand(command);
+    typed.textContent='';charIndex=0;commandIndex++;
+    autoTimer=window.setTimeout(tick,750);
+   },280);
   }
  }
- autoTimer=window.setTimeout(tick,600);
+ autoTimer=window.setTimeout(tick,350);
 }
 const scene=document.querySelector('.zoom-sequence');
 if(scene&&'IntersectionObserver' in window){
  const observer=new IntersectionObserver(entries=>{
   if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();startAuto();}
- },{threshold:.2});
+ },{threshold:.15});
  observer.observe(scene);
 }else{startAuto();}
 </script>
