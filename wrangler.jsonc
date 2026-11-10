@@ -1,1 +1,9 @@
-{"$schema":"node_modules/wrangler/config-schema.json","name":"zakaria-cyber-portfolio","compatibility_date":"2026-11-09","assets":{"directory":"./dist"}}
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "zakaria-cyber-portfolio",
+  "compatibility_date": "2026-11-09",
+  "assets": {
+    "directory": "./dist",
+    "html_handling": "force-trailing-slash"
+  }
+}
