@@ -3,21 +3,44 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
 ---
-<Base>
-<div class="ambient" aria-hidden="true"><div class="orb"></div><div class="scan"></div></div>
-<section class="stage">
- <div class="stage-top"><span class="serial">PORTFOLIO / 001 — 2026</span><span class="live"><i></i> SYSTEM ONLINE</span></div>
- <div class="stage-content">
-  <p class="overline"><span class="slash">//</span> THE PERSON BEHIND THE SCREEN</p>
-  <h1 class="display"><span>ZAKARIA</span><span class="display-second">ADILI<span class="red-dot">.</span></span></h1>
-  <div class="hero-bottom"><div class="hero-role"><span class="line"></span><div><strong>DEV11</strong><small>OFFENSIVE SECURITY / FIELD NOTES</small></div></div><p>Curiosity is the entry point.<br/>Understanding is the objective.</p></div>
+<Base title="DEV11 — Zakaria Adili | Offensive Security">
+<section class="hero" id="top">
+ <div class="hero-grid" aria-hidden="true"></div>
+ <div class="hero-copy">
+  <p class="eyebrow">[ CYBERSECURITY / RED TEAM / OFFENSIVE SECURITY ]</p>
+  <h1><span>ZAKARIA</span><strong>ADILI<span class="red">/</span></strong></h1>
+  <p class="role"><span class="red">&gt;_</span> DEV11 — OFFENSIVE SECURITY</p>
+  <p class="hero-desc">Learning offensive security through hands-on labs, careful research, and documented failures as well as wins.</p>
+  <div class="actions"><a class="action-primary" href="#projects">EXPLORE WORK <span>↗</span></a><a class="action-secondary" href="/writeups">READ WRITE-UPS ↗</a></div>
  </div>
- <div class="stage-foot"><span>BASED ONLINE · WORKING EVERYWHERE</span><a href="#writing">SCROLL TO EXPLORE <span>↓</span></a></div>
- <div class="vertical-tag">NOISE / SIGNAL / SYSTEMS</div>
+ <div class="hero-side"><span>01 / ENTRY POINT</span><span>OSCP / IN PROGRESS</span><span>AUTHORIZED LABS ONLY</span></div>
+ <div class="hero-foot"><span>DEV11 // PERSONAL SECURITY JOURNAL</span><a href="#transition">SCROLL TO ENTER <span class="red">↓</span></a></div>
 </section>
-<div class="site-inner">
- <section class="feature" id="about"><div class="feature-index">01 / PROFILE</div><div class="feature-body"><p class="micro">NOT A PERFECT RECORD. A REAL ONE.</p><h2>BREAK THINGS.<br/><em>LEARN WHY.</em></h2><div class="feature-grid"><p>I'm Zakaria, also known as DEV11. I study offensive security and document the details that matter: dead ends, discoveries, and everything between.</p><div class="focus"><span>CURRENT FOCUS</span><strong>OSCP PREPARATION</strong><strong>LINUX / WEB / PRIVESC</strong><strong>LAB RESEARCH</strong></div></div></div></section>
- <section class="work" id="writing"><div class="work-heading"><div><span class="feature-index">02 / ARCHIVE</span><h2>FIELD <i>NOTES</i><span class="red-dot">.</span></h2></div><a href="/writeups">VIEW ALL ENTRIES ↗</a></div><div class="work-list">{posts.slice(0,6).map((post,i)=><a class="work-row" href={'/writeups/'+post.id}><span class="work-num">{String(i+1).padStart(2,'0')}</span><div class="work-name"><strong>{post.data.title}</strong><small>{post.data.summary}</small></div><span class="work-platform">{post.data.platform} / {post.data.status}</span><span class="work-arrow">↗</span></a>)}</div></section>
- <section class="outro" id="contact"><p class="micro">03 / CONTACT</p><h2>STAY<br/><span>CURIOUS.</span></h2><div class="outro-bottom"><span>EVERY SYSTEM HAS A STORY.</span><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></div></section>
-</div>
+<section class="zoom-sequence" id="transition" aria-label="Entering the system">
+ <div class="zoom-sticky">
+  <div class="corridor" aria-hidden="true">
+   <div class="corridor-ceiling"></div><div class="corridor-floor"></div><div class="corridor-left"></div><div class="corridor-right"></div>
+   <div class="corridor-portal"><div class="portal-inner"><span>DEV11</span><b>ACCESS / GRANTED</b></div></div>
+   <div class="corridor-haze"></div>
+  </div>
+  <div class="zoom-overlay"><span class="zoom-label">02 / INTO THE SYSTEM</span><h2>LOOK<br/>CLOSER<span class="red">.</span></h2><p>Every system has another layer.</p><span class="scroll-hint">SCROLL TO GO DEEPER ↓</span></div>
+ </div>
+</section>
+<section class="projects" id="projects">
+ <div class="section-top"><span>03 / FIELD WORK</span><span>LAB NOTES & LEARNING</span></div>
+ <div class="section-title"><h2>THE<br/><em>ARCHIVE.</em></h2><p>Write-ups from authorized training environments. Methodology, mistakes, and what I learned along the way.</p></div>
+ <div class="project-list">{posts.length ? posts.slice(0,6).map((post,i)=><a class="project-row" href={'/writeups/'+post.id}><span class="project-index">{String(i+1).padStart(2,'0')}</span><div><span class="project-category">{post.data.platform} / {post.data.status}</span><h3>{post.data.title}</h3><p>{post.data.summary}</p></div><span class="project-link">↗</span></a>) : <p class="empty-note">Field notes coming soon.</p>}</div>
+ <a class="all-link" href="/writeups">OPEN THE FULL ARCHIVE ↗</a>
+</section>
+<section class="focus-section" id="about"><div class="section-top"><span>04 / ABOUT</span><span>THE PERSON BEHIND DEV11</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
+<section class="contact-section" id="contact"><span>05 / OUTSIDE THE SYSTEM</span><h2>STAY<br/><em>CURIOUS.</em></h2><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></section>
+<script>
+ const zone=document.querySelector<HTMLElement>('.zoom-sequence');
+ const sticky=document.querySelector<HTMLElement>('.zoom-sticky');
+ const reduce=window.matchMedia('(prefers-reduced-motion: reduce)');
+ let queued=false;
+ function update(){queued=false;if(!zone||!sticky)return;const r=zone.getBoundingClientRect();const total=Math.max(1,zone.offsetHeight-window.innerHeight);const p=Math.max(0,Math.min(1,-r.top/total));sticky.style.setProperty('--zoom',reduce.matches?'1':String(1+p*4.2));sticky.style.setProperty('--fade',String(Math.min(1,Math.max(0,(p-.13)*2.6))));sticky.style.setProperty('--label-opacity',String(Math.max(0,1-p*2.8)));}
+ function onScroll(){if(!queued){queued=true;requestAnimationFrame(update)}}
+ window.addEventListener('scroll',onScroll,{passive:true});window.addEventListener('resize',onScroll);reduce.addEventListener('change',onScroll);update();
+</script>
 </Base>
