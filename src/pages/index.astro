@@ -88,6 +88,59 @@ skills:'Currently studying: web security, Linux privilege escalation, Active Dir
 status:'OSCP preparation: IN PROGRESS. No certification claimed.',
 contact:'Email: adilizakaria1@gmail.com\\nLinkedIn: linkedin.com/in/zakaria-adili-405975123'
 };
-form?.addEventListener('submit',(event)=>{event.preventDefault();if(!input||!output)return;const command=input.value.trim().toLowerCase();if(!command)return;if(command==='clear'){output.textContent='';input.value='';return;}const line=document.createElement('div');line.className='terminal-response';const heading=document.createElement('strong');heading.textContent='$ '+command;const body=document.createElement('pre');body.textContent=(responses[command]??'Command not found. Type help for available commands.').replaceAll('\\n','\n');line.append(heading,body);output.append(line);input.value='';output.scrollIntoView({behavior:'smooth',block:'nearest'});});
+function runCommand(command:string, automated=false){
+ if(!output)return;
+ if(command==='clear'){output.textContent='';return;}
+ const line=document.createElement('div');line.className='terminal-response';
+ const heading=document.createElement('strong');heading.textContent='$ '+command;
+ const body=document.createElement('pre');body.textContent=(responses[command]??'Command not found. Type help for available commands.').replaceAll('\\n',String.fromCharCode(10));
+ line.append(heading,body);output.append(line);
+ if(!automated){output.scrollTop=output.scrollHeight;}
+}
+let autoStarted=false;
+let autoCancelled=false;
+let autoTimer:number|undefined;
+const stopAuto=()=>{autoCancelled=true;if(autoTimer!==undefined)window.clearTimeout(autoTimer);};
+input?.addEventListener('focus',stopAuto);
+input?.addEventListener('input',stopAuto);
+form?.addEventListener('submit',(event)=>{
+ event.preventDefault();if(!input)return;
+ stopAuto();const command=input.value.trim().toLowerCase();if(!command)return;
+ runCommand(command);input.value='';
+});
+const demoCommands=['whoami','experience','education','languages','status'];
+function startAuto(){
+ if(autoStarted||autoCancelled||!input||!output)return;
+ autoStarted=true;
+ if(window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+  for(const command of demoCommands)runCommand(command,true);
+  return;
+ }
+ let commandIndex=0;let charIndex=0;
+ function tick(){
+  if(autoCancelled||!input||!output)return;
+  if(commandIndex>=demoCommands.length){input.value='';return;}
+  const command=demoCommands[commandIndex];
+  if(charIndex<command.length){
+   input.value=command.slice(0,++charIndex);
+   autoTimer=window.setTimeout(tick,90);
+  }else{
+   autoTimer=window.setTimeout(()=>{
+    if(autoCancelled||!input)return;
+    runCommand(command,true);
+    input.value='';charIndex=0;commandIndex++;
+    autoTimer=window.setTimeout(tick,1100);
+   },400);
+  }
+ }
+ autoTimer=window.setTimeout(tick,600);
+}
+const scene=document.querySelector('.zoom-sequence');
+if(scene&&'IntersectionObserver' in window){
+ const observer=new IntersectionObserver(entries=>{
+  if(entries.some(entry=>entry.isIntersecting)){observer.disconnect();startAuto();}
+ },{threshold:.2});
+ observer.observe(scene);
+}else{startAuto();}
 </script>
 </Base>
