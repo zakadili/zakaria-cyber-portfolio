@@ -1,0 +1,24 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('writeups', ({ data }) => data.published);
+  return posts.map((post) => ({ params: { slug: post.id }, props: { post } }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+const date = post.data.date.toISOString().slice(0, 10);
+---
+<Base title={post.data.title + ' — DEV11 | Zakaria Adili'}>
+  <main class="article">
+    <a href="/writeups/" class="underlink">← BACK TO FIELD NOTES</a>
+    <p class="eyebrow" style="margin-top:55px">/ WRITE-UPS / {post.data.platform.toUpperCase()}</p>
+    <h1>{post.data.title}</h1>
+    <p class="lede">{post.data.summary}</p>
+    <p class="tags">{date} &nbsp; / &nbsp; {post.data.difficulty} &nbsp; / &nbsp; {post.data.status}</p>
+    <div class="markdown"><Content /></div>
+    <p style="margin-top:70px"><a href="/writeups/" class="underlink">← ALL WRITE-UPS</a></p>
+  </main>
+</Base>
