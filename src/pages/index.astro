@@ -3,30 +3,30 @@ import Base from '../layouts/Base.astro';
 import { getCollection } from 'astro:content';
 const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b)=>b.data.date.valueOf()-a.data.date.valueOf());
 ---
-<Base title="DEV11 — Zakaria Adili | Offensive Security">
+<Base title="ZAKARIA ADILI — Zakaria Adili | Offensive Security">
 <section class="hero" id="top">
  <div class="hero-grid" aria-hidden="true"></div>
  <div class="hero-copy">
   <p class="eyebrow">[ CYBERSECURITY / RED TEAM / OFFENSIVE SECURITY ]</p>
   <h1><span>ZAKARIA</span><strong>ADILI<span class="red">/</span></strong></h1>
-  <p class="role"><span class="red">&gt;_</span> DEV11 — OFFENSIVE SECURITY</p>
+  <p class="role"><span class="red">&gt;_</span> ZAKARIA ADILI — OFFENSIVE SECURITY</p>
   <p class="hero-desc">Learning offensive security through hands-on labs, careful research, and documented failures as well as wins.</p>
   <div class="actions"><a class="action-primary" href="#projects">EXPLORE WORK <span>↗</span></a><a class="action-secondary" href="/writeups">READ WRITE-UPS ↗</a></div>
  </div>
  <div class="hero-side"><span>01 / ENTRY POINT</span><span>OSCP / IN PROGRESS</span><span>AUTHORIZED LABS ONLY</span></div>
- <div class="hero-foot"><span>DEV11 // PERSONAL SECURITY JOURNAL</span><a href="#transition">SCROLL TO ENTER <span class="red">↓</span></a></div>
+ <div class="hero-foot"><span>ZAKARIA ADILI // PERSONAL SECURITY JOURNAL</span><a href="#transition">SCROLL TO ENTER <span class="red">↓</span></a></div>
 </section>
-<section class="zoom-sequence" id="transition" aria-label="DEV11 interactive scroll experience">
+<section class="zoom-sequence" id="transition" aria-label="ZAKARIA ADILI interactive scroll experience">
  <div class="zoom-sticky">
   <div class="terminal-atmosphere" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="ambient-glow"></div></div>
   <div class="terminal-scene">
-   <div class="terminal-window" aria-label="Illustrative DEV11 terminal">
-    <div class="terminal-bar"><div class="terminal-lights"><i></i><i></i><i></i></div><span>dev11@lab: ~/field-notes</span><span>— □ ×</span></div>
+   <div class="terminal-window" aria-label="Illustrative ZAKARIA ADILI terminal">
+    <div class="terminal-bar"><div class="terminal-lights"><i></i><i></i><i></i></div><span>zakaria@lab: ~/field-notes</span><span>— □ ×</span></div>
     <div class="terminal-body" id="terminal-body">
       <div id="terminal-result" class="terminal-result" aria-live="off"></div>
-      <div class="terminal-active-line" id="terminal-active-line"><span class="terminal-host">dev11@lab</span>:~$ <span id="terminal-typed"></span><span class="terminal-caret">▌</span></div>
+      <div class="terminal-active-line" id="terminal-active-line"><span class="terminal-host">zakaria@lab</span>:~$ <span id="terminal-typed"></span><span class="terminal-caret">▌</span></div>
       <form class="terminal-form" id="terminal-form" autocomplete="off" hidden>
-        <label for="terminal-command">dev11@lab:~$</label>
+        <label for="terminal-command">zakaria@lab:~$</label>
         <input id="terminal-command" name="command" aria-label="Terminal command" spellcheck="false" maxlength="40" placeholder="type help..." />
         <button type="submit">RUN ↵</button>
       </form>
@@ -35,7 +35,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
    </div>
   </div>
   <div class="scene-caption"><span>02 / INSIDE THE SYSTEM</span><h2>EVERY<br/>LAYER <em>MATTERS.</em></h2><p>Enumeration. Understanding. Persistence in learning.<br/>Scroll to inspect the workspace.</p></div>
-  <div class="scene-progress"><span>SCROLL TO EXPLORE</span><div class="progress-track"><div class="progress-fill"></div></div><span>DEV11 / 02</span></div>
+  <div class="scene-progress"><span>SCROLL TO EXPLORE</span><div class="progress-track"><div class="progress-fill"></div></div><span>ZAKARIA ADILI / 02</span></div>
  </div>
 </section>
 <section class="projects" id="projects">
@@ -44,7 +44,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  <div class="project-list">{posts.length ? posts.slice(0,6).map((post,i)=><a class="project-row" href={'/writeups/'+post.id+'/'}><span class="project-index">{String(i+1).padStart(2,'0')}</span><div><span class="project-category">{post.data.platform} / {post.data.status}</span><h3>{post.data.title}</h3><p>{post.data.summary}</p></div><span class="project-link">↗</span></a>) : <p class="empty-note">Field notes coming soon.</p>}</div>
  <a class="all-link" href="/writeups">OPEN THE FULL ARCHIVE ↗</a>
 </section>
-<section class="focus-section" id="about"><div class="section-top"><span>04 / ABOUT</span><span>THE PERSON BEHIND DEV11</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
+<section class="focus-section" id="about"><div class="section-top"><span>04 / ABOUT</span><span>THE PERSON BEHIND ZAKARIA ADILI</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
 <section class="resume-section" id="resume">
  <div class="section-top"><span>05 / BACKGROUND</span><span>CURRICULUM VITAE</span></div>
  <div class="resume-intro"><h2>BEFORE<br/><em>THE SHELL.</em></h2><p>My route into cybersecurity hasn't been linear. Investigations, language data, business, and software development all shaped how I approach problems today.</p></div>
@@ -78,7 +78,7 @@ const input=document.querySelector<HTMLInputElement>('#terminal-command');
 const output=document.querySelector<HTMLElement>('#terminal-result');
 const responses:Record<string,string>={
 help:'COMMANDS: whoami | experience | education | languages | skills | status | contact | clear',
-whoami:'Zakaria Adili / DEV11 — offensive security student. Background in fraud investigations, data analysis and software development.',
+whoami:'Zakaria Adili / ZAKARIA ADILI — offensive security student. Background in fraud investigations, data analysis and software development.',
 experience:'Amazon — Investigations Specialist (2020–2022)\\nTransPerfect — Language Data Analyst (2019)\\nEarlier: JACOBS and Palmeraie Hotels.\\nSee the CV section below.',
 education:'EU Business School — Digital Business (2022–2025)\\nLe Wagon — Full-Stack / Data Science (2022)\\nUniversity of New York in Prague — Business Administration (2017–2020)\\nAl Akhawayn University — Studies (2014–2016)\\nAnglo-American University, Prague — Exchange Program (2016–2017).',
 languages:'Arabic: native\\nFrench: native/bilingual\\nEnglish: full professional\\nSpanish: working proficiency',
@@ -93,7 +93,7 @@ function runCommand(command:string){
  if(!output)return;
  if(command==='clear'){output.textContent='';return;}
  const line=document.createElement('div');line.className='terminal-response';
- const heading=document.createElement('strong');heading.textContent='dev11@lab:~$ '+command;
+ const heading=document.createElement('strong');heading.textContent='zakaria@lab:~$ '+command;
  const body=document.createElement('pre');body.textContent=(responses[command]??'Command not found. Type help for available commands.').replaceAll('\\n',String.fromCharCode(10));
  line.append(heading,body);output.append(line);
  terminalBody?.scrollTo({top:terminalBody.scrollHeight,behavior:'instant'});
