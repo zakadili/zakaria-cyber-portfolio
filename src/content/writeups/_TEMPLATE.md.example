@@ -1,0 +1,20 @@
+---
+title: "Machine Name"
+platform: "Hack The Box"
+difficulty: "Easy"
+date: 2026-11-10
+summary: "One-sentence summary."
+tags: ["Enumeration", "Linux"]
+status: "In progress"
+published: false
+---
+
+## Overview
+
+## Enumeration
+
+## Initial access
+
+## Privilege escalation
+
+## Lessons learned

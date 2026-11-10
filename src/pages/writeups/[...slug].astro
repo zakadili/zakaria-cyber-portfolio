@@ -1,0 +1,8 @@
+---
+import Base from '../../layouts/Base.astro';
+import {getCollection,render} from 'astro:content';
+export async function getStaticPaths(){const posts=await getCollection('writeups',({data})=>data.published);return posts.map(post=>({params:{slug:post.id},props:{post}}));}
+const {post}=Astro.props;
+const {Content}=await render(post);
+---
+<Base title={post.data.title+' | Zakaria Adili'} description={post.data.summary}><div class="shell"><article class="article"><a class="link" href="/writeups">← ALL WRITE-UPS</a><p class="eyebrow">{post.data.platform} · {post.data.difficulty} · {post.data.status}</p><h1>{post.data.title}</h1><p class="lede">{post.data.summary}</p><div class="tags">{post.data.tags.join(' · ')}</div><div class="markdown"><Content/></div></article></div></Base>
