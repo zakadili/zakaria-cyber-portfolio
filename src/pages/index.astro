@@ -38,15 +38,15 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
   <div class="scene-progress"><span>SCROLL TO EXPLORE</span><div class="progress-track"><div class="progress-fill"></div></div><span>ZAKARIA ADILI / 02</span></div>
  </div>
 </section>
-<section class="projects" id="projects">
- <div class="section-top"><span>03 / FIELD WORK</span><span>LAB NOTES & LEARNING</span></div>
+<section class="featured-project" id="featured-project"><div class="section-top"><span>03 / SELECTED BUILD</span><span>OPEN SOURCE · CYBER THREAT INTELLIGENCE</span></div><div class="featured-project-grid"><div><p class="eyebrow">FEATURED PROJECT / NEXUS SENTINEL</p><h2>THREATS.<br/><em>IN CONTEXT.</em></h2><p>A cyber threat intelligence visualization project exploring public threat feeds, evidence provenance, and the difference between observed events and enrichment. Built to make complex signals easier to inspect—not to claim complete global visibility.</p><div class="actions"><a class="action-primary" href="https://zakadili.github.io/nexus-3d/" target="_blank" rel="noopener noreferrer">EXPLORE NEXUS ↗</a><a class="action-secondary" href="https://github.com/zakadili/nexus-3d" target="_blank" rel="noopener noreferrer">VIEW SOURCE ↗</a></div></div><div class="featured-project-mark" aria-hidden="true"><span>NX</span><small>INTELLIGENCE / EXPERIMENTAL</small></div></div></section><section class="projects" id="projects">
+ <div class="section-top"><span>04 / FIELD WORK</span><span>LAB NOTES & LEARNING</span></div>
  <div class="section-title"><h2>THE<br/><em>ARCHIVE.</em></h2><p>Write-ups from authorized training environments. Methodology, mistakes, and what I learned along the way.</p></div>
  <div class="project-list">{posts.length ? posts.slice(0,6).map((post,i)=><a class="project-row" href={'/writeups/'+post.id+'/'}><span class="project-index">{String(i+1).padStart(2,'0')}</span><div><span class="project-category">{post.data.platform} / {post.data.status}</span><h3>{post.data.title}</h3><p>{post.data.summary}</p></div><span class="project-link">↗</span></a>) : <p class="empty-note">Field notes coming soon.</p>}</div>
  <a class="all-link" href="/writeups">OPEN THE FULL ARCHIVE ↗</a>
 </section>
-<section class="focus-section" id="about"><div class="section-top"><span>04 / ABOUT</span><span>THE PERSON BEHIND ZAKARIA ADILI</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
+<section class="focus-section" id="about"><div class="section-top"><span>05 / ABOUT</span><span>THE PERSON BEHIND ZAKARIA ADILI</span></div><div class="focus-grid"><h2>NO SHORTCUTS.<br/><em>JUST WORK.</em></h2><div><p>I'm Zakaria Adili. I’m building my skills in penetration testing, Linux, web security, Active Directory, and privilege escalation. This site tracks the process as it happens.</p><div class="focus-lines"><span>01 — OSCP PREPARATION</span><span>02 — HANDS-ON LABS</span><span>03 — TECHNICAL WRITE-UPS</span></div></div></div></section>
 <section class="resume-section" id="resume">
- <div class="section-top"><span>05 / BACKGROUND</span><span>CURRICULUM VITAE</span></div>
+ <div class="section-top"><span>06 / BACKGROUND</span><span>CURRICULUM VITAE</span></div>
  <div class="resume-intro"><h2>BEFORE<br/><em>THE SHELL.</em></h2><p>My route into cybersecurity hasn't been linear. Investigations, language data, business, and software development all shaped how I approach problems today.</p></div>
  <div class="resume-columns"><div><h3>EXPERIENCE</h3>
   <article class="resume-item"><time>2020 — 2022</time><div><h4>Amazon</h4><strong>Investigations Specialist · Prague</strong><p>Investigated fraud patterns and risks involving seller onboarding, identity verification, KYC checks, and compliance procedures.</p></div></article>
@@ -62,7 +62,7 @@ const posts=(await getCollection('writeups',({data})=>data.published)).sort((a,b
  </div></div>
  <div class="resume-links"><a href="https://www.linkedin.com/in/zakaria-adili-405975123/" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a><a href="mailto:adilizakaria1@gmail.com">EMAIL ME ↗</a></div>
 </section>
-<section class="contact-section" id="contact"><span>06 / OUTSIDE THE SYSTEM</span><h2>STAY<br/><em>CURIOUS.</em></h2><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></section>
+<section class="contact-section" id="contact"><span>07 / OUTSIDE THE SYSTEM</span><h2>STAY<br/><em>CURIOUS.</em></h2><a href="https://github.com/zakadili" target="_blank" rel="noopener noreferrer">FIND ME ON GITHUB ↗</a></section>
 <script>
  const zone=document.querySelector<HTMLElement>('.zoom-sequence');
  const sticky=document.querySelector<HTMLElement>('.zoom-sticky');
